@@ -15,8 +15,19 @@ function getFormattedDate(dateString) {
     return month + '/' + day + '/' + year;
 }
 
+// Only two options in this script:
+// 1. Original text-only posts
+// 2. Original text-based posts with a photo attachment
+// "Original" means that your Twitter account posted the tweet first, not somebody else's account.
+// Meaning, in turn, this script leaves out replies, retweets, etc. since I didn't have a use case for them,
+// but they can be added if you tinker with the Mastodon API.
 async function postToMastodon(item, current, max) {
     console.log('importTweets() processing:', current, '/', max);
+
+    // Option one: you're uploading a tweet with a photo file attachment.
+    // 1. Gets the photo file
+    // 2. Saves the photo file to Mastodon
+    // 3. Uploads a text-based post with a reference to the saved photo file
     if (item.tweet &&
         item.tweet.entities &&
         item.tweet.entities.media &&
@@ -55,7 +66,7 @@ async function postToMastodon(item, current, max) {
                         data: {
                             // Change the status text accordingly
                             status: item.tweet.full_text + '\n\n' + 'Originally posted on ' + getFormattedDate(item.tweet.created_at) + ': ' + tweetBaseUrl + item.tweet.id_str,
-                            media_ids: [secondRes.data.id],
+                            media_ids: [secondRes.data.id], // This identifies the media file uploaded in the previous step
                             language: 'en',
                             visibility: 'public' // Change to "private" for testing
                         }
@@ -69,6 +80,7 @@ async function postToMastodon(item, current, max) {
             });
         });
     } else {
+        // Option two: you're uploading a post that only has text / emojis / etc., but no media files
         await axios({
             url: '/api/v1/statuses',
             baseURL: apiPath,

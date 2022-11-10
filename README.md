@@ -26,4 +26,4 @@ It's a good idea to edit `tweets.js` to only a few tweet objects before trying t
 
 I wrote this in around an hour. There is plenty that can be modified / expanded / improved. You're using this code 100% at your own risk.
 
-If you don't own the Mastodon server, get permission, first, which you'll need for the API key.
+If you don't own the Mastodon server, you'll need to get permission, first, and ask for the API key.
