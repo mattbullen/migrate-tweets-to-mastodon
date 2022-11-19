@@ -26,25 +26,6 @@ function getStatusText(item) {
 
 // --- Posting Sequence Functions ---
 
-// For posts containing text, emojis, etc., but no image file.
-async function postTextOnly(item) {
-    return await axios({
-        url: '/api/v1/statuses',
-        baseURL: apiPath,
-        method: 'POST',
-        headers: {
-            'Authorization': 'Bearer ' + apiKey
-        },
-        data: {
-            status: getStatusText(item),
-            language: 'en',
-            visibility: 'public' // Change to "private" for testing.
-        }
-    }).then((res) => {
-        console.log('postTextOnly():', res.data.url); // The URL of the new post.
-    });
-}
-
 // Saves an image file to the Mastodon server.
 async function saveImageToMastodon(item, postHeaders, imageFormData) {
     return await axios({
@@ -76,6 +57,25 @@ async function postTextWithImage(item, mediaId) {
         }
     }).then((res) => {
         console.log('postTextWithImage():', res.data.url); // The URL of the new post.
+    });
+}
+
+// For posts containing text, emojis, etc., but no image file.
+async function postTextOnly(item) {
+    return await axios({
+        url: '/api/v1/statuses',
+        baseURL: apiPath,
+        method: 'POST',
+        headers: {
+            'Authorization': 'Bearer ' + apiKey
+        },
+        data: {
+            status: getStatusText(item),
+            language: 'en',
+            visibility: 'public' // Change to "private" for testing.
+        }
+    }).then((res) => {
+        console.log('postTextOnly():', res.data.url); // The URL of the new post.
     });
 }
 
@@ -117,7 +117,7 @@ async function postToMastodon(item, current, max) {
 // and does not cover the use case of multiple image files.
 function importTweets() {
     console.log('importTweets() start');
-    const tweets = require("./tweets-text-only").filter(o => {
+    const tweets = require("./tweets").filter(o => {
         return o &&
             o.tweet &&
             o.tweet.full_text.substring(0, 1) !== "@" &&
