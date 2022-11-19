@@ -14,7 +14,7 @@ Mostly to recast it as a `module.exports`.
 
 ### 3. Edit `import.js` to fit your use case.
 
-Add your Mastodon server API key, Mastodon server url, tweak the post text, etc. 
+Add your Mastodon server API key, Mastodon server URL, tweak the sample post text, etc. 
 
 ### 4. Run `import.js` from the terminal.
 
