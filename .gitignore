@@ -108,3 +108,4 @@ dist
 .idea
 .xml
 .iml
+/index-temp.js

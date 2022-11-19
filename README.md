@@ -12,18 +12,18 @@ Quick and dirty code to import tweets from a Twitter account archive to a Mastod
 
 Mostly to recast it as a `module.exports`.
 
-### 3. Edit `index.js`
+### 3. Edit `import.js`
 
 Add your Mastodon server API key, Mastodon server url, tweak the post text, etc. 
 
-### 4. Run `index.js`
+### 4. Run `import.js`
 
-From the terminal, `node index.js`.
+From the terminal, `node import.js`.
 
 It's a good idea to edit `tweets.js` to only a few tweet objects before trying the full list.
 
 ## Note
 
-I wrote this in around an hour. There is plenty that can be modified / expanded / improved. You're using this code 100% at your own risk.
+There is plenty here that can be modified / expanded / improved. You're using this code 100% at your own risk.
 
 If you don't own the Mastodon server, you'll need to get permission, first, and ask for the API key.
