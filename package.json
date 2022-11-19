@@ -2,7 +2,7 @@
   "name": "import-tweets-to-mastodon",
   "version": "0.0.1",
   "description": "Import tweets from a Twitter account archive to a Mastodon server via Node.js",
-  "main": "index.js",
+  "main": "import.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mattbullen/import-tweets-to-mastodon.git"

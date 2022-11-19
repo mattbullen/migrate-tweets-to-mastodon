@@ -116,7 +116,6 @@ async function postToMastodon(item, current, max) {
 // Again, this script leaves out replies, retweets, etc.,
 // and does not cover the use case of multiple image files.
 function importTweets() {
-    console.log('importTweets() start');
     const tweets = require("./tweets").filter(o => {
         return o &&
             o.tweet &&
@@ -125,8 +124,8 @@ function importTweets() {
             !o.tweet.in_reply_to_user_id;
     }).reverse(); // Reverses the array to upload the oldest, first.
     const max = tweets.length;
+    console.log('importTweets() filtered tweet count:', max);
     if (max < 1) {
-        console.log('importTweets() no items');
         return;
     }
     let current = 0;
@@ -134,9 +133,7 @@ function importTweets() {
         for (let item of tweets) {
             if (item) {
                 current++;
-                yield [
-                    Promise.resolve(postToMastodon(item, current, max))
-                ];
+                yield [Promise.resolve(postToMastodon(item, current, max))];
             }
         }
     }).catch((err) => {
