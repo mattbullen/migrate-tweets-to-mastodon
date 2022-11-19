@@ -116,7 +116,7 @@ async function postToMastodon(item, current, max) {
 // Again, this script leaves out replies, retweets, etc.,
 // and does not cover the use case of multiple image files.
 function importTweets() {
-    const tweets = require("./tweets").filter(o => {
+    const tweets = require("./tweet").filter(o => {
         return o &&
             o.tweet &&
             o.tweet.full_text.substring(0, 1) !== "@" &&
