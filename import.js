@@ -5,11 +5,11 @@ const apiKey = '', // Mastodon API key.
     axios = require('axios'),
     co = require('co'),
     formData = require('form-data'),
-    twitterHandle = ''; // Your twitter handle, if you want to link back to the original tweet.
+    twitterHandle = ''; // Your Twitter handle, if you want to link back to the original tweet.
 
 // --- Helper Functions ---
 
-// Formats the "originally posted on" date to Month/Day/Year.
+// Formats the "originally posted on" date to month/day/year.
 function getFormattedDate(dateString) {
     const date = new Date(dateString);
     return `${(1 + date.getMonth())}/${date.getDate()}/${date.getFullYear()}`;
