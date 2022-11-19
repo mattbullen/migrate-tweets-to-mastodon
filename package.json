@@ -13,7 +13,6 @@
   "dependencies": {
     "axios": "^0.19.0",
     "co": "^4.6.0",
-    "form-data": "^4.0.0",
-    "fs": "0.0.1-security"
+    "form-data": "^4.0.0"
   }
 }
